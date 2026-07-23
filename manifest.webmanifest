@@ -1,0 +1,23 @@
+{
+  "id": "/pocket24/",
+  "name": "Pocket24",
+  "short_name": "Pocket24",
+  "description": "منصة تداول العقود الآجلة والفوركس",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#050914",
+  "theme_color": "#050914",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["finance", "business"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
