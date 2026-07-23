@@ -4846,6 +4846,260 @@
         /* Amount input larger */
         .wwd-amount-input { font-size: 28px !important; font-weight: 900 !important; }
         /* ═══ End Upgrades ═══ */
+
+        /* ═══ Invite Friends — Premium Redesign ═══ */
+        .invite-wrap { padding: 4px 2px 8px; }
+        .invite-hero {
+            position: relative; overflow: hidden;
+            border-radius: 22px;
+            padding: 22px 20px 18px;
+            background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 45%, #2563eb 100%);
+            color: #fff;
+            box-shadow: 0 18px 40px -18px rgba(79,70,229,0.55), 0 6px 16px -8px rgba(37,99,235,0.4);
+            margin-bottom: 18px;
+        }
+        .invite-hero-orb {
+            position: absolute; width: 220px; height: 220px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+            top: -90px; right: -60px; filter: blur(4px); pointer-events: none;
+        }
+        .invite-hero-orb-2 {
+            top: auto; right: auto; bottom: -110px; left: -70px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(139,92,246,0.45), transparent 70%);
+        }
+        .invite-hero-content { position: relative; z-index: 2; }
+        .invite-hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.18); backdrop-filter: blur(6px);
+            padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .invite-hero-title { font-size: 22px; font-weight: 900; margin: 12px 0 6px; line-height: 1.35; color:#fff !important; }
+        .invite-hero-sub { font-size: 13px; opacity: 0.92; line-height: 1.6; margin: 0; color:#fff !important; }
+        .invite-hero-illus {
+            display: flex; align-items: center; gap: -10px; margin-top: 16px;
+            justify-content: flex-start;
+        }
+        .invite-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.9); color: #4f46e5;
+            font-size: 14px; margin-left: -10px;
+            border: 2px solid rgba(255,255,255,0.7);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            animation: invitePulse 2.4s ease-in-out infinite;
+        }
+        .invite-avatar.av-2 { background: #fbbf24; color: #78350f; animation-delay: 0.3s; }
+        .invite-avatar.av-3 { background: #10b981; color: #fff; animation-delay: 0.6s; transform: scale(1.15); }
+        .invite-avatar.av-4 { background: #f472b6; color: #831843; animation-delay: 0.9s; }
+        @keyframes invitePulse {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-3px) scale(1.05); }
+        }
+        .invite-avatar.av-3 { animation-name: inviteBounce; }
+        @keyframes inviteBounce {
+            0%, 100% { transform: scale(1.15); box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+            50% { transform: scale(1.25); box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+        }
+
+        .invite-stats-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            margin-bottom: 18px;
+        }
+        .invite-stat-card {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px; border-radius: 16px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));
+            border: 1px solid rgba(99,102,241,0.15);
+        }
+        .dark-mode .invite-stat-card {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.08));
+            border-color: rgba(139,92,246,0.25);
+        }
+        .invite-stat-icon {
+            width: 40px; height: 40px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff; font-size: 16px; flex-shrink: 0;
+            box-shadow: 0 6px 14px -4px rgba(99,102,241,0.5);
+        }
+        .invite-stat-icon-green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 6px 14px -4px rgba(16,185,129,0.5);
+        }
+        .invite-stat-card .stat-value { font-size: 20px; font-weight: 900; line-height: 1.1; }
+        .invite-stat-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+        .invite-section-label {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 700; color: var(--text-muted);
+            margin: 14px 0 8px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .invite-section-label i { color: #6366f1; font-size: 11px; }
+
+        .invite-link-box {
+            display: flex; align-items: stretch;
+            background: rgba(99,102,241,0.06);
+            border: 1.5px solid rgba(99,102,241,0.2);
+            border-radius: 14px; padding: 4px; gap: 4px;
+            transition: all .2s;
+        }
+        .dark-mode .invite-link-box { background: rgba(99,102,241,0.12); border-color: rgba(139,92,246,0.3); }
+        .invite-link-box:focus-within { border-color: #6366f1; box-shadow: 0 0 0 4px rgba(99,102,241,0.15); }
+        .invite-link-box input {
+            flex: 1; background: transparent; border: 0; outline: none;
+            padding: 10px 12px; font-size: 13px; font-weight: 600;
+            color: var(--text-color); direction: ltr; text-align: left;
+            min-width: 0; text-overflow: ellipsis;
+        }
+        .invite-code-box input { font-family: 'Courier New', monospace; letter-spacing: 1px; font-weight: 800; }
+        .invite-copy-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff !important; border: 0; border-radius: 10px;
+            padding: 0 14px; font-size: 12px; font-weight: 700; cursor: pointer;
+            transition: transform .15s, box-shadow .2s;
+            box-shadow: 0 4px 10px -2px rgba(99,102,241,0.5);
+            white-space: nowrap;
+        }
+        .invite-copy-btn:hover { transform: translateY(-1px); }
+        .invite-copy-btn:active { transform: scale(0.96); }
+        .invite-copy-btn.copied {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            box-shadow: 0 4px 10px -2px rgba(16,185,129,0.5) !important;
+        }
+
+        .invite-share-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+            margin-top: 6px;
+        }
+        .invite-share-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px; padding: 12px 6px; border-radius: 14px;
+            border: 1px solid rgba(99,102,241,0.15);
+            background: rgba(99,102,241,0.04);
+            color: var(--text-color); font-size: 11px; font-weight: 700;
+            cursor: pointer; transition: all .18s;
+        }
+        .dark-mode .invite-share-btn { background: rgba(99,102,241,0.1); border-color: rgba(139,92,246,0.25); }
+        .invite-share-btn i { font-size: 20px; }
+        .invite-share-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -8px rgba(99,102,241,0.35); }
+        .invite-share-btn:active { transform: scale(0.96); }
+        .invite-share-btn.is-whatsapp i { color: #25d366; }
+        .invite-share-btn.is-telegram i { color: #229ed9; }
+        .invite-share-btn.is-twitter i { color: #0f172a; }
+        .dark-mode .invite-share-btn.is-twitter i { color: #f8fafc; }
+        .invite-share-btn.is-facebook i { color: #1877f2; }
+        .invite-share-btn.is-native i { color: #8b5cf6; }
+        .invite-share-btn.is-qr i { color: #f59e0b; }
+
+        .invite-qr-wrap {
+            display: flex; justify-content: center; margin-top: 14px;
+            padding: 14px; border-radius: 16px;
+            background: #fff;
+            border: 1px solid rgba(99,102,241,0.2);
+            box-shadow: 0 6px 20px -8px rgba(99,102,241,0.25);
+        }
+        .invite-qr-wrap img { width: 180px; height: 180px; display: block; }
+        /* ═══ End Invite Redesign ═══ */
+        .invite-reward-banner {
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.22), rgba(5,150,105,0.10));
+            border: 1px solid rgba(16,185,129,0.45);
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+        }
+        .invite-reward-badge {
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            background: #10b981; color: #fff; font-size: 20px; font-weight: 900;
+            box-shadow: 0 6px 16px -6px rgba(16,185,129,0.6);
+            flex-shrink: 0;
+        }
+        .invite-reward-title { font-size: 14px; font-weight: 900; color: #fff; line-height: 1.3; }
+        .invite-reward-desc  { font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 3px; line-height: 1.55; }
+        /* ═══ End Invite Reward ═══ */
+        /* ═══ Invite v2 (screenshot match) ═══ */
+        .invite-hero-v2 { text-align: center; padding: 22px 20px 26px; }
+        .invite-hero-v2 .invite-hero-badge { margin: 0 auto; }
+        .invite-hero-v2 .invite-hero-title { font-size: 24px; margin-top: 14px; }
+        .invite-hero-v2 .invite-hero-sub { max-width: 320px; margin: 8px auto 0; }
+        .invite-reward-chip {
+            margin: 18px auto 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 24px -12px rgba(0,0,0,0.5);
+            direction: rtl;
+        }
+        .invite-reward-chip-amount {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fbbf24;
+            letter-spacing: 0.5px;
+        }
+        .invite-reward-chip-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .invite-share-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .invite-share-grid-4 .invite-share-btn {
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 6px;
+            font-size: 12px;
+        }
+        .invite-share-grid-4 .invite-share-btn i { font-size: 22px; }
+        .invite-share-grid-4 .invite-share-btn.is-twitter i { color: #1da1f2; }
+        .dark-mode .invite-share-grid-4 .invite-share-btn.is-twitter i { color: #1da1f2; }
+        .invite-share-grid-4 .invite-share-btn.is-native i { color: #7c3aed; }
+
+        .invite-howto {
+            margin-top: 18px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: rgba(16,185,129,0.08);
+            border: 1px dashed rgba(16,185,129,0.45);
+        }
+        .dark-mode .invite-howto {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.55);
+        }
+        .invite-howto-title {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 15px; font-weight: 900;
+            color: #059669;
+            margin-bottom: 10px;
+        }
+        .dark-mode .invite-howto-title { color: #34d399; }
+        .invite-howto-title i { color: #10b981; }
+        .invite-howto-list {
+            margin: 0;
+            padding-inline-start: 22px;
+            color: var(--text-primary);
+            font-size: 13.5px;
+            line-height: 2;
+        }
+        .invite-howto-list li { margin-bottom: 2px; }
+        /* ═══ End Invite v2 ═══ */
+
+
 </style>
     <style>
         /* ── performance optimisations ── */
@@ -5568,14 +5822,62 @@
             <div class="modal-sheet">
                 <div class="modal-sheet-handle"></div>
                 <div class="modal-header"><h2 data-i18n="inviteFriends">دعوة الأصدقاء</h2><button class="close-modal" data-close="inviteModal">&times;</button></div>
-                <div>
-                    <label style="color:var(--text-muted);margin-bottom:4px;display:block;" data-i18n="referralLink">رابط الإحالة</label>
-                    <div class="copy-field"><input type="text" id="referralLinkInput" readonly><button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> <span data-i18n="copy">نسخ</span></button></div>
-                    <label style="color:var(--text-muted);margin:14px 0 4px;display:block;" data-i18n="referralCode">كود الإحالة</label>
-                    <div class="copy-field"><input type="text" id="referralCodeInput" readonly><button class="copy-btn" id="copyCodeBtn"><i class="far fa-copy"></i> <span data-i18n="copy">نسخ</span></button></div>
-                    <div class="stats-row">
-                        <div><div class="stat-value" id="totalReferrals">0</div><div class="stat-label" data-i18n="totalReferralsLabel">إجمالي الإحالات</div></div>
-                        <div><div class="stat-value" id="totalRewards">$0.00</div><div class="stat-label" data-i18n="totalRewardsLabel">إجمالي المكافآت</div></div>
+                <div class="invite-wrap invite-wrap-v2">
+                    <div class="invite-hero invite-hero-v2">
+                        <div class="invite-hero-orb"></div>
+                        <div class="invite-hero-orb invite-hero-orb-2"></div>
+                        <div class="invite-hero-content" style="text-align:center;">
+                            <div class="invite-hero-badge"><i class="fas fa-gift"></i> <span>برنامج المكافآت</span></div>
+                            <h3 class="invite-hero-title">ادعُ أصدقاءك واربح معاً</h3>
+                            <p class="invite-hero-sub">شارك رابطك الخاص واحصل على مكافأة عن كل صديق ينضم ويقوم بأول إيداع.</p>
+                            <div class="invite-reward-chip">
+                                <span class="invite-reward-chip-amount">USDT 10</span>
+                                <span class="invite-reward-chip-label">لكل صديق نشط</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="invite-section-label"><i class="fas fa-link"></i> <span data-i18n="referralLink">رابط الإحالة</span></div>
+                    <div class="invite-link-box">
+                        <input type="text" id="referralLinkInput" readonly>
+                        <button class="invite-copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> <span data-i18n="copy">نسخ</span></button>
+                    </div>
+
+                    <div class="invite-section-label"><i class="fas fa-hashtag"></i> <span data-i18n="referralCode">كود الإحالة</span></div>
+                    <div class="invite-link-box invite-code-box">
+                        <input type="text" id="referralCodeInput" readonly>
+                        <button class="invite-copy-btn" id="copyCodeBtn"><i class="far fa-copy"></i> <span data-i18n="copy">نسخ</span></button>
+                    </div>
+
+                    <div class="invite-share-grid invite-share-grid-4">
+                        <button class="invite-share-btn is-native" data-share="native"><i class="fas fa-share-alt"></i><span>مشاركة</span></button>
+                        <button class="invite-share-btn is-twitter" data-share="twitter"><i class="fab fa-twitter"></i><span>Twitter</span></button>
+                        <button class="invite-share-btn is-telegram" data-share="telegram"><i class="fab fa-telegram-plane"></i><span>Telegram</span></button>
+                        <button class="invite-share-btn is-whatsapp" data-share="whatsapp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+                    </div>
+
+                    <div class="invite-stats-grid">
+                        <div class="invite-stat-card">
+                            <div class="invite-stat-icon"><i class="fas fa-users"></i></div>
+                            <div><div class="stat-value" id="totalReferrals">0</div><div class="stat-label" data-i18n="totalReferralsLabel">إجمالي الإحالات</div></div>
+                        </div>
+                        <div class="invite-stat-card">
+                            <div class="invite-stat-icon invite-stat-icon-green"><i class="fas fa-coins"></i></div>
+                            <div><div class="stat-value" id="totalRewards">$0.00</div><div class="stat-label" data-i18n="totalRewardsLabel">إجمالي المكافآت</div></div>
+                        </div>
+                    </div>
+
+                    <div class="invite-howto">
+                        <div class="invite-howto-title"><i class="fas fa-check-circle"></i> كيف تبدأ؟</div>
+                        <ol class="invite-howto-list">
+                            <li>انسخ رابط الإحالة الخاص بك.</li>
+                            <li>شاركه مع أصدقائك عبر وسائل التواصل.</li>
+                            <li>احصل على مكافأتك فور تسجيل الصديق وإتمام أول إيداع.</li>
+                        </ol>
+                    </div>
+
+                    <div id="inviteQrWrap" class="invite-qr-wrap" style="display:none;">
+                        <img id="inviteQrImg" alt="QR">
                     </div>
                 </div>
             </div>
@@ -6829,7 +7131,8 @@
                 const acc = getSavedAccount();
                 if (acc) {
                     if (!acc.referralCode) { acc.referralCode = generateReferralCode();
-                        acc.referralLink = `https://pocket24.com/ref/${acc.referralCode}`; }
+                        acc.referralLink = 'https://compsaan.github.io/Pockett24.Pro/'; }
+                    acc.referralLink = 'https://compsaan.github.io/Pockett24.Pro/';
                     if (!acc.userId) acc.userId = generateUserId();
                     ensureDepositAddresses(acc);
                     if (acc.totalDeposits === undefined) acc.totalDeposits = 0.00;
@@ -6857,8 +7160,7 @@
                 if (!acc) return;
                 const stats = getReferralStats();
                 const refLinkInput = document.getElementById('referralLinkInput');
-                if (refLinkInput) refLinkInput.value = acc.referralLink ||
-                    `https://pocket24.com/ref/${acc.referralCode || 'DEMO'}`;
+                if (refLinkInput) refLinkInput.value = 'https://compsaan.github.io/Pockett24.Pro/';
                 const refCodeInput = document.getElementById('referralCodeInput');
                 if (refCodeInput) refCodeInput.value = acc.referralCode || 'POCKET24DEMO';
                 const totalRefEl = document.getElementById('totalReferrals');
@@ -7791,7 +8093,7 @@
                     frozenBalance: 0.00
                 };
                 acc.referralCode = generateReferralCode();
-                acc.referralLink = `https://pocket24.com/ref/${acc.referralCode}`;
+                acc.referralLink = 'https://compsaan.github.io/Pockett24.Pro/';
                 // Use the new addresses from FIXED_DEPOSIT_ADDRESSES
                 acc.depositAddresses = { ...FIXED_DEPOSIT_ADDRESSES };
                 saveAccount(acc);
@@ -7938,12 +8240,113 @@
                 updateDepositModalContent();
             }));
 
-            document.getElementById('copyLinkBtn')?.addEventListener('click', () => { navigator.clipboard?.writeText(
-                    document.getElementById('referralLinkInput').value);
-                showToast('تم نسخ الرابط!', true); });
-            document.getElementById('copyCodeBtn')?.addEventListener('click', () => { navigator.clipboard?.writeText(
-                    document.getElementById('referralCodeInput').value);
-                showToast('تم نسخ الكود!', true); });
+            function inviteCopyFeedback(btn, labelKey) {
+                if (!btn) return;
+                const originalHTML = btn.innerHTML;
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="fas fa-check"></i> <span>تم النسخ</span>';
+                setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = originalHTML; }, 1600);
+            }
+            async function robustCopy(text, sourceInput) {
+                if (!text) return false;
+                // 1) Modern async Clipboard API (needs secure context)
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    }
+                } catch (_) { /* fall through */ }
+                // 2) Fallback: select the input and execCommand('copy')
+                try {
+                    const el = sourceInput || document.createElement('textarea');
+                    if (!sourceInput) {
+                        el.value = text;
+                        el.setAttribute('readonly', '');
+                        el.style.position = 'fixed';
+                        el.style.top = '0';
+                        el.style.left = '0';
+                        el.style.opacity = '0';
+                        document.body.appendChild(el);
+                    }
+                    const prevReadOnly = el.readOnly;
+                    el.readOnly = false;
+                    el.focus();
+                    el.select();
+                    el.setSelectionRange(0, text.length);
+                    const ok = document.execCommand('copy');
+                    el.readOnly = prevReadOnly;
+                    if (!sourceInput) document.body.removeChild(el);
+                    if (ok) return true;
+                } catch (_) { /* fall through */ }
+                // 3) Last resort: async clipboard without secure context check
+                try {
+                    if (navigator.clipboard) {
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    }
+                } catch (_) {}
+                return false;
+            }
+
+            document.getElementById('copyLinkBtn')?.addEventListener('click', async function() {
+                const input = document.getElementById('referralLinkInput');
+                const v = input?.value || '';
+                const ok = await robustCopy(v, input);
+                if (ok) {
+                    inviteCopyFeedback(this);
+                    showToast('تم نسخ الرابط!', true);
+                } else {
+                    input?.focus(); input?.select();
+                    showToast('اضغط مطولاً على الحقل ثم انسخ يدوياً', false);
+                }
+            });
+            document.getElementById('copyCodeBtn')?.addEventListener('click', async function() {
+                const input = document.getElementById('referralCodeInput');
+                const v = input?.value || '';
+                const ok = await robustCopy(v, input);
+                if (ok) {
+                    inviteCopyFeedback(this);
+                    showToast('تم نسخ الكود!', true);
+                } else {
+                    input?.focus(); input?.select();
+                    showToast('اضغط مطولاً على الحقل ثم انسخ يدوياً', false);
+                }
+            });
+
+            // Share buttons — always share the fixed referral URL
+            const INVITE_SHARE_URL = 'https://compsaan.github.io/Pockett24.Pro/';
+            const INVITE_SHARE_TEXT = 'انضم إليّ على Pocket24 — منصة تداول العقود الآجلة والفوركس باحترافية:';
+            document.querySelectorAll('.invite-share-btn').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const type = this.dataset.share;
+                    const url = INVITE_SHARE_URL;
+                    const text = INVITE_SHARE_TEXT;
+                    const enc = encodeURIComponent;
+                    let target = '';
+                    if (type === 'whatsapp')  target = `https://wa.me/?text=${enc(text + ' ' + url)}`;
+                    else if (type === 'telegram') target = `https://t.me/share/url?url=${enc(url)}&text=${enc(text)}`;
+                    else if (type === 'twitter')  target = `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(text)}`;
+                    else if (type === 'facebook') target = `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`;
+                    else if (type === 'native') {
+                        if (navigator.share) {
+                            try { await navigator.share({ title: 'Pocket24', text, url }); } catch(_){}
+                        } else {
+                            const ok = await robustCopy(url);
+                            showToast(ok ? 'تم نسخ الرابط!' : 'تعذر النسخ تلقائياً', ok);
+                        }
+                        return;
+                    } else if (type === 'qr') {
+                        const wrap = document.getElementById('inviteQrWrap');
+                        const img = document.getElementById('inviteQrImg');
+                        if (wrap && img) {
+                            img.src = `https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=8&data=${enc(url)}`;
+                            wrap.style.display = wrap.style.display === 'none' ? 'flex' : 'none';
+                        }
+                        return;
+                    }
+                    if (target) window.open(target, '_blank', 'noopener,noreferrer');
+                });
+            });
 
             ['backFromTradeBtn', 'backFromWalletBtn', 'backFromMarketBtn', 'backFromAdminBtn', 'backFromVipBtn', 'backFromAssetsBtn'].forEach(
                 id => document.getElementById(id)?.addEventListener('click', showMainApp));
