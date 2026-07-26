@@ -7,12 +7,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Pocket24">
+<meta name="apple-mobile-web-app-title" content="Pocket24.Pro">
 <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<meta property="og:title" content="Pocket24">
+<meta property="og:title" content="Pocket24.Pro">
 <meta property="og:description" content="منصة تداول العقود الآجلة والفوركس">
 <meta property="og:image" content="./icon-512.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,15 +20,15 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=yes">
-    <title>Pocket24 · منصة تداول العقود الآجلة والفوركس</title>
+    <title>Pocket24.Pro · منصة تداول العقود الآجلة والفوركس</title>
 
-    <meta name="application-name" content="Pocket24">
+    <meta name="application-name" content="Pocket24.Pro">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Pocket24">
+    <meta name="apple-mobile-web-app-title" content="Pocket24.Pro">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#050914">
-    <meta name="description" content="منصة تداول العقود الآجلة والفوركس باحترافية - Pocket24">
+    <meta name="description" content="منصة تداول العقود الآجلة والفوركس باحترافية - Pocket24.Pro">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -274,20 +274,22 @@
         .sp-logo-box {
             position: relative;
             width: 148px; height: 148px;
-            border-radius: 32px;
+            border-radius: 50%;
             background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: spLogoPulse 2.8s ease-in-out infinite;
             z-index: 2;
+            border: 3px solid #2563eb;
+            box-shadow: 0 0 0 5px rgba(96,165,250,0.35), 0 0 0 10px rgba(96,165,250,0.12);
             filter: drop-shadow(0 0 22px rgba(59,130,246,0.70))
                     drop-shadow(0 0 55px rgba(37,99,235,0.38));
         }
         .sp-logo-img {
             width: 148px;
             height: 148px;
-            border-radius: 32px;
+            border-radius: 50%;
             object-fit: cover;
             display: block;
             image-rendering: -webkit-optimize-contrast;
@@ -825,15 +827,18 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: #ffffff !important;
+            background-color: #ffffff !important;
+            background-image: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-top: 1px solid #e2e8f0 !important;
+            border-top: 1.5px solid #e8edf5 !important;
+            box-shadow: 0 -2px 12px rgba(15,23,42,0.05) !important;
             justify-content: space-around;
             padding: 6px 8px calc(6px + var(--safe-bottom));
             z-index: 20;
             flex-shrink: 0;
-            transition: background 0.4s;
+            opacity: 1 !important;
+            filter: none !important;
         }
         #bottomNav.visible {
             display: flex;
@@ -842,7 +847,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-size: 11px;
             cursor: pointer;
             min-width: 56px;
@@ -974,6 +979,7 @@
         }
         .double-input {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
         .double-input .input-group {
@@ -3804,13 +3810,20 @@
             color: #c4b5fd !important;
         }
 
-        /* ─── Bottom nav: solid white in light mode ─────────────────────── */
-        body:not(.dark-mode) #bottomNav {
+        /* ─── Bottom nav: solid pure white, no transparency ──────────────── */
+        #bottomNav,
+        body:not(.dark-mode) #bottomNav,
+        .main-app #bottomNav,
+        .main-app.active #bottomNav {
+            background-color: #ffffff !important;
+            background-image: none !important;
             background: #ffffff !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-top: 1px solid #e2e8f0 !important;
-            box-shadow: none !important;
+            opacity: 1 !important;
+            filter: none !important;
+            border-top: 1.5px solid #e8edf5 !important;
+            box-shadow: 0 -2px 12px rgba(15,23,42,0.05) !important;
         }
         .dark-mode #bottomNav {
             background: #0a101e !important;
@@ -5209,6 +5222,278 @@
         }
         .wdep-confirm-btn:active { opacity:.85; }
     </style>
+
+    <style id="auth-redesign-v2">
+      /* ===== Pocket24 · Auth redesign (welcome + login + signup) ===== */
+
+      /* Welcome screen — cinematic gradient stage */
+      .welcome-screen{
+        position:relative;
+        background:
+          radial-gradient(120% 60% at 50% -10%, #dbeafe 0%, rgba(219,234,254,0) 60%),
+          radial-gradient(80% 60% at 100% 110%, #e0e7ff 0%, rgba(224,231,255,0) 55%),
+          linear-gradient(180deg,#ffffff 0%, #f5f8ff 100%);
+        padding:32px 22px 24px;
+        overflow:hidden;
+      }
+      .welcome-screen::before{
+        content:""; position:absolute; inset:auto -20% -30% -20%; height:60%;
+        background:
+          radial-gradient(50% 50% at 30% 50%, rgba(37,99,235,.18), transparent 70%),
+          radial-gradient(50% 50% at 70% 40%, rgba(14,165,233,.18), transparent 70%);
+        filter:blur(30px); pointer-events:none;
+      }
+      .welcome-header{ margin-top:28px; position:relative; z-index:1; }
+      .welcome-brand-mark{
+        width:72px;height:72px;margin:0 auto 16px;border-radius:18px;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:
+          0 16px 38px -10px rgba(37,99,235,.50),
+          0 0 0 3px rgba(96,165,250,0.30);
+        position:relative;
+        overflow:hidden;
+        background:#0a1628;
+      }
+      .welcome-brand-mark::after{
+        content:""; position:absolute; inset:0; border-radius:inherit;
+        background:linear-gradient(160deg, rgba(255,255,255,.08), transparent 45%);
+        pointer-events:none;
+      }
+      .welcome-logo{
+        font-size:44px; font-weight:900; letter-spacing:.5px; margin-bottom:10px;
+        background:linear-gradient(135deg,#0f172a 0%,#1e40af 55%,#0ea5e9 100%);
+        -webkit-background-clip:text; background-clip:text; color:transparent;
+      }
+      .welcome-slogan{
+        color:#475569; font-size:15px; font-weight:500; line-height:1.7;
+        max-width:320px; margin:0 auto 8px;
+      }
+      .welcome-trust-row{
+        display:flex; justify-content:center; gap:8px; margin:18px auto 0;
+        flex-wrap:wrap; position:relative; z-index:1;
+      }
+      .welcome-trust-chip{
+        display:inline-flex; align-items:center; gap:6px;
+        padding:7px 12px; border-radius:999px;
+        background:rgba(255,255,255,.85); backdrop-filter:blur(14px);
+        border:1px solid rgba(191,219,254,.9);
+        color:#1e3a8a; font-size:12px; font-weight:700;
+        box-shadow:0 4px 14px rgba(37,99,235,.06);
+      }
+      .welcome-trust-chip i{ color:#2563eb; font-size:11px; }
+
+      .welcome-actions{
+        margin:36px 0 22px; gap:12px; position:relative; z-index:1;
+      }
+      .btn-welcome{
+        border-radius:18px; padding:17px 20px; font-size:16px; font-weight:700;
+        display:inline-flex; align-items:center; justify-content:center; gap:10px;
+        border:1px solid #dbe4ff; background:rgba(255,255,255,.9);
+        color:#1e40af; backdrop-filter:blur(12px);
+        box-shadow:0 8px 24px -14px rgba(15,23,42,.18);
+      }
+      .btn-welcome-primary{
+        background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 55%,#3b82f6 100%);
+        color:#fff; border:none;
+        box-shadow:
+          0 14px 30px -10px rgba(37,99,235,.65),
+          inset 0 1px 0 rgba(255,255,255,.28);
+      }
+      .btn-welcome-primary:active{
+        background:linear-gradient(135deg,#1e40af,#2563eb);
+      }
+
+      .lang-selector-welcome{
+        margin:8px auto 4px; padding:5px; gap:4px;
+        background:rgba(255,255,255,.85); border:1px solid #e2e8f0;
+        border-radius:999px; width:max-content;
+        box-shadow:0 6px 18px -10px rgba(15,23,42,.15);
+      }
+      .lang-selector-welcome .lang-btn{
+        border:none; background:transparent; padding:8px 14px; border-radius:999px;
+        color:#64748b; font-weight:700; font-size:13px;
+      }
+      .lang-selector-welcome .lang-btn.active{
+        background:linear-gradient(135deg,#1d4ed8,#2563eb);
+        color:#fff; box-shadow:0 6px 14px -6px rgba(37,99,235,.55);
+      }
+
+      .welcome-footer{
+        position:relative; z-index:1;
+        color:#64748b; font-size:12.5px; font-weight:500;
+      }
+      .welcome-footer .link{ color:#2563eb; }
+
+      /* ===== Modals — modern bottom sheet ===== */
+      .modal.show{ background:rgba(15,23,42,.55); backdrop-filter:blur(10px); }
+      .modal-sheet{
+        border-radius:28px 28px 0 0 !important;
+        padding:14px 22px 34px !important;
+        background:#ffffff;
+        box-shadow:0 -20px 60px -20px rgba(15,23,42,.35);
+        border-top:1px solid rgba(226,232,240,.9);
+      }
+      .modal-sheet-handle{
+        width:44px;height:5px;border-radius:999px;
+        background:#cbd5e1; margin:6px auto 14px;
+      }
+      .modal-header{
+        display:flex; align-items:flex-start; justify-content:space-between;
+        margin-bottom:6px;
+      }
+      .modal-header h2{
+        font-size:22px; font-weight:800; color:#0f172a; letter-spacing:-.2px;
+      }
+      .modal-subtitle{
+        color:#64748b; font-size:13.5px; font-weight:500;
+        margin:0 0 20px; line-height:1.7;
+      }
+      .close-modal{
+        width:36px;height:36px;border-radius:12px;
+        background:#f1f5f9;color:#475569;border:none;
+        display:inline-flex;align-items:center;justify-content:center;
+        font-size:18px; cursor:pointer;
+      }
+
+      /* Floating-label inputs */
+      .input-group{ position:relative; margin-bottom:14px; }
+      .input-group label{
+        position:absolute; top:14px; inset-inline-start:48px;
+        color:#94a3b8; font-size:14px; font-weight:600;
+        pointer-events:none; transition:all .18s ease;
+        background:transparent; padding:0 4px;
+      }
+      .input-group.no-icon label{ inset-inline-start:16px; }
+      .input-field{
+        background:#f8fafc !important; border:1.5px solid #e2e8f0 !important;
+        border-radius:16px !important;
+        padding-block-start:22px !important; padding-block-end:10px !important;
+        padding-inline-start:48px !important;   /* icon side in RTL = right */
+        padding-inline-end:44px !important;     /* toggle button side */
+        font-size:15px !important; font-weight:600; color:#0f172a !important;
+        transition:all .2s ease;
+      }
+      .input-group.no-icon .input-field{ padding-inline-start:16px !important; }
+      .input-field::placeholder{ color:transparent; }
+      .input-field:focus{
+        background:#fff !important; border-color:#2563eb !important;
+        box-shadow:0 0 0 4px rgba(37,99,235,.12) !important;
+      }
+      .input-field:focus + label,
+      .input-field:not(:placeholder-shown) + label{
+        top:6px; font-size:11px; color:#2563eb; font-weight:700;
+      }
+      .input-icon{
+        position:absolute; top:0; bottom:0; inset-inline-start:14px;
+        display:flex; align-items:center; color:#94a3b8; font-size:15px;
+        pointer-events:none; transition:color .2s;
+      }
+      .input-group:focus-within .input-icon{ color:#2563eb; }
+      .input-toggle{
+        position:absolute; top:0; bottom:0; inset-inline-end:12px;
+        display:flex; align-items:center; color:#94a3b8;
+        background:transparent; border:none; cursor:pointer; padding:6px;
+      }
+      .input-toggle:active{ color:#2563eb; }
+      .double-input{ gap:10px; flex-direction:column; }
+
+
+      /* Password strength bar */
+      .pw-strength-wrap{
+        margin: -8px 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .pw-strength-bar{
+        display: flex;
+        gap: 4px;
+        height: 4px;
+      }
+      .pw-strength-bar span{
+        flex:1; border-radius:99px;
+        background:#e2e8f0;
+        transition: background 0.25s;
+      }
+      .pw-strength-bar span.s-weak  { background:#ef4444; }
+      .pw-strength-bar span.s-fair  { background:#f59e0b; }
+      .pw-strength-bar span.s-good  { background:#3b82f6; }
+      .pw-strength-bar span.s-strong{ background:#22c55e; }
+      .pw-strength-label{
+        font-size:11px; font-weight:700; color:#94a3b8;
+        text-align:start; transition: color 0.25s;
+      }
+      .auth-forgot-row{
+        display:flex; justify-content:flex-end; margin:2px 2px 16px;
+      }
+      .auth-forgot-row .link{ font-size:13px; font-weight:700; }
+
+      /* Terms card */
+      .terms-card{
+        display:flex; align-items:flex-start; gap:12px;
+        padding:14px; border-radius:16px;
+        background:linear-gradient(135deg,#eff6ff,#f5f3ff);
+        border:1px solid #dbeafe; margin:8px 0 16px;
+      }
+      .terms-card input[type=checkbox]{
+        width:20px;height:20px;margin-top:1px;accent-color:#2563eb;flex-shrink:0;
+      }
+      .terms-card label{ font-size:13px;line-height:1.7;color:#334155;font-weight:500; }
+      .terms-card .link-inline{
+        color:#2563eb;font-weight:800;text-decoration:underline;cursor:pointer;
+      }
+
+      /* Primary auth CTA */
+      .modal-sheet .btn-primary{
+        padding:16px 20px !important; font-size:16px !important;
+        border-radius:16px !important;
+        background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 55%,#3b82f6 100%) !important;
+        box-shadow:
+          0 14px 28px -10px rgba(37,99,235,.55),
+          inset 0 1px 0 rgba(255,255,255,.28) !important;
+        display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      }
+      .modal-sheet .btn-primary::after{
+        content:"\f061"; font-family:"Font Awesome 6 Free"; font-weight:900;
+        font-size:13px; opacity:.9; transform:scaleX(-1);
+      }
+      html[dir="ltr"] .modal-sheet .btn-primary::after{ transform:none; }
+
+      .modal-divider{
+        display:flex; align-items:center; gap:12px; margin:22px 0 16px;
+        color:#94a3b8; font-size:12px; font-weight:700;
+      }
+      .modal-divider::before,.modal-divider::after{
+        content:""; flex:1; height:1px;
+        background:linear-gradient(90deg, transparent, #e2e8f0, transparent);
+      }
+
+      .social-row{ display:flex; gap:10px; }
+      .social-btn{
+        flex:1; display:inline-flex; align-items:center; justify-content:center; gap:8px;
+        padding:13px; border-radius:14px; background:#fff; border:1.5px solid #e2e8f0;
+        color:#334155; font-weight:700; font-size:14px; cursor:pointer;
+        transition:all .18s ease;
+      }
+      .social-btn:active{ transform:scale(.97); background:#f8fafc; }
+      .social-btn i{ font-size:16px; }
+      .social-btn.google i{ color:#ea4335; }
+      .social-btn.apple i{ color:#0f172a; }
+
+      .modal-footer{
+        margin-top:22px; font-size:13.5px; color:#64748b; font-weight:500;
+      }
+      .modal-footer .link{ font-weight:800; }
+
+      /* Signup header pill */
+      .auth-badge{
+        display:inline-flex; align-items:center; gap:6px;
+        padding:5px 10px; border-radius:999px;
+        background:#eff6ff; color:#1d4ed8;
+        font-size:11.5px; font-weight:800; margin-bottom:10px;
+      }
+    </style>
+
 </head>
 <body>
     <div class="app-container" id="appContainer">
@@ -5232,7 +5517,7 @@
             </div>
 
             <!-- Name & tagline -->
-            <div class="sp-name">Pocket24</div>
+            <div class="sp-name">Pocket24.Pro</div>
             <div class="sp-tagline">منصة التداول الاحترافية</div>
 
             <!-- Animated progress bar -->
@@ -5244,7 +5529,7 @@
             </div>
 
             <!-- Version -->
-            <div class="sp-version">Pocket24 · v2.3</div>
+            <div class="sp-version">Pocket24.Pro · v2.3</div>
         </div>
 
         <!-- Status Bar Spacer -->
@@ -5253,20 +5538,22 @@
         <!-- Welcome Screen -->
         <div id="welcomeScreen" class="welcome-screen" style="display:none;">
             <div class="welcome-header">
-                <div class="welcome-logo" data-i18n="appName">Pocket24</div>
+                <div class="welcome-brand-mark"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4RExgUERIXEg4PFRwVFxkZGxsbEBQdHx0aHxgaGxr/2wBDAQQFBQYFBgwHBwwaEQ8RGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhr/wAARCAC0ALQDASIAAhEBAxEB/8QAHQAAAAcBAQEAAAAAAAAAAAAAAAMEBQYHCAIBCf/EAFcQAAEDAgMCCAcKCQoCCwAAAAIBAwQABQYREgchCBMiMTJBUWEUQlJicYGSFSMzcoKRk6HR0jRDU2OiscHC0yREVGRzg4SUo7IYJRYmNUVGdYWVs+Hw/8QAGwEAAQUBAQAAAAAAAAAAAAAABQACAwQGAQf/xAA4EQABAwIDBAgFAgcBAQAAAAABAAIDBBESITEFE0FRImGBkaGx0fAUMnHB4QYVFiMzQlJT8SRj/9oADAMBAAIRAxEAPwDAG/Ova8qWYNwZKxZLeyebg26IHGzpzye9x2+1e1V6k66mjjfM8NaLkpjnBguVHosSRPfFiIy5IfNcgbbFSJV7kSpiOy66RW0dxDKgWEV36Z0pBc+jTMvqp3n41h4cYctezqMtsjZaHri4n8sld6n+LHzRqBPy3ZDiuOmRmu9VUs1WjApYIf6nSPVkPz4KrvJJPlyHipC7hKwR8uOxcy4X5iA6afOumkjmH8Pj0cROF/6ef3qZkcVG+WmrNdyV4rvmJ8610iDhGPH1XA2T/Py9E4nZbQi5Be3C/wAEqfvUmO2W0V5N0Iv8Mv20mQkLNEFEVaL9VROZDwYPH1Uox8/JHLb4idGaq/3JUWsFjqkr9Etc10glTN0w/wBnmu3PNc+CNeK/+gteeCtflv0KNy3ZV4g134dnJLGVykRn8uvsV0kNn+k/6deoJV7xaLvpfDs5LmM80BgRV55ip/dLRqW6D13Ah/w6/bRWhO1a80oPnLTtwwf2efqljPNLEtVr8e7OD/hF+9Rw2az5JqvbiZ/1JfvU2oBGXN6VrpGzdJAZbIl8VETNacI4/wDWPH1TSXc/JPbeEIUzSMDENuJxfFka2PrIcqR3jBd6sDYyLjBcGKfQkNqjjRfLHMabcjGn3D2MLphl0ltkpQZPc6wfLZcTsMF5JUtxTvyIt9PQ+q5ikbobqJ70Xvr3JVXnqzpmH7XjmE9ccIxgtt7jhxkq0AWbbw9ZsZ/WHzVWRAoFktD56Z0Bz0OhU7JBJpqi6FChVNSpZChvXCXHixQVx980bbBOdSVckSrDxrcWbBAZwZZTRYkBdVweD+dS/HJe4OiPopq2bIMC4zr66KKlohOyGs+bjl5Df6RfVUZeeOQ6RmutwyzVV61o5TN3MGPi7y/J8lTk/mSW4DzXi8tNSrpXm9NeIAeX+jXJl1DzDXOqldOsjHOUtc6a7TenelegOpalazEm3XINaqOVjyhWrS2I7Nh2l48tFifM2o0l335wEzIWhFSNU9QrV14v2CYKws/qIr3Kt5moNym32dOpOkBpxXIPu9aZpRum2ZvXBmLpHOyE1G0oqY9NZDRjzFo5Gve8uL39taQb2Z7PC38ZfRTvkM/wqVNbLNnZfjr1/mGf4VGB+n6hurVQO3qT/LzWYkjr5NGhFXsrVcfY9s8dUdL929clv+HT3D2G7PnVTKRcv8yH8Ol+zhnzjwVc/qGk/wAljwYa+TXSQD7K3DF4PWz40EvCJ/ypIfw6dmuDXgB1N0idyv6wH8Oo3UtIzW/cov4hpzoVgdYJeTRJQyHnGt+yeCZg6a3/ACG9Toprza2gcT9lQDFXA9ukNs3rBdoVxDxQPNg19vd9dRGnoJMmyZ9YI/CtxbYjkWQlVxGuIzQW9WfN116xLctkjjIbul4Pxg/sqwMYbMb9hCT4PfLXIhnzjxgck07ULmL1VBJEHQvLHKqdRQSQgPb2FF4qmOYJAUp0lUlVM/ipXPHn3ewNdmqCvwY15xujmbbRe3TzUDe0jUq+MPJK4F0k2qWzJivExKZLWBhuIC7fTTpjRli6BGxFBZFgJykEtkOi3JTpZdxdL56jKjpXNedafLTIWTbbnbS5SPNccHcYb/8AbqphO+iMTuz6/nRIjA4PCidCgvPQrPq6pjYXEYwXiIk6Tz0Zr1aiL92o+pbk3INO9uPThG5j2zGP1FTJ1JRy/wDJjHV9yqjR0n/X7L2hQTzqHJ76aE9Ghyd9KWBUjGiEpytzPGugPnUWo48cjWqrI7C262DwPcPpDZxPil5MvA4Xgsc1/KPL1fIFfaqfX+ebbz/vTcyPIHRIiOfBvh39ip1Gm9F+autl9uTB2xWyMkmiRd3HLg8njaPg2/0QVfXTDdJ/GOFp6621FBvZ3uOgy7vzcryja9S41Qtw+/4sFAMVYdWAyt1sLjkqzEeg9fw0Q1/Fuon1HzH1daJEguBIue+rThyHmJ6OQdKm6PFOsuJrbfBecDDxkX6udMlqIY6uOzXCuMLpZH2cRFKhui28kNxgmW3ckIwRTTUqIpKOa9laxm0m0hEU/Svp+VJSQ/HNO7bmNU1x7y6CjpJae42IHRy98Wk1nuGz25uCEePicdXlvRvsqdx8HYQNnjAG+6O+Qx9yrEtfDa5jd3BUauCGnNpHAJnjYteD8YvtU9QsaPNn8Kun41MdzHA1oUuPYxGenslMfcpgPHGziOelyLikO8ZEZf3KpyGBzbmF3h6qBmyviW3iddXHbMbuio6nVL5VTizY81KguOCXyqoWx3nZ9iMkYtGKJ1nlrubau8QeLIv7VtV0/NT3crfecIyWQujelt5NbMlk0Nl9O0DTctA5aSjqjgGTusW7ufYqk1DWUWa0JKhWfFdvOFNZYcZd6TbjQm2vpD9qaV76ybts4OxWUJd0wuyfg7Qk7Ih561bDP4Rs/Hb7esOtOZVtjDuKyAm+Xvq04dxZxBASO68jTwrrYf058WenLPT4ydSpzKhEK1n5YJ9nOtq06hFdnbXe1wbJqvlVOhlHMgNN6UhcUCc5AaU7M60Xwh9mrWGbqF0tkbwe3zzNCYTekaQC++M59aJmiiXWBhWdnG9B0Gr4Gt6bNHL1KjqGzx3SZznKltid4q5ML1LqH50WkjwaSXsXmWjbbyZzC58x0D0kCJnNianE0OEPYtCuj+Ec+MtCg51VtPkAk/6NzwX+ksr9RU2aU8ql0Iv+RS0/rDf6ipBpWibc42fT7lVhqV7R6tCLYHr3l1dlFJyel0q6TMlqZnRXCjG+VUzwLZXr5fIECMGt6U+DIJ2kq5JUPZHMq0NwZLOh4z92pAamLHEdnlq8sEybT6QgrQbMBa8vHDNCq+TdxFaQx3cmbe6NsgGiRLawEJnLm0NogfXkq+uqtk3LjTXetLMRXQ3nzUjUi7VqKnK389eq7NodxA1pXksmKaR0h4qbYRlMxLqV1nprhWtk5z6dqNCp5etRRPXWZWrPc8VYjmXSapa5LzsqW8XRTPMzJfrrQbZA1hCYyaqJ3d8ImSdJWhLWf1oA+uohtBxbhvCGDLnYLUSO4intIwXF5F4M0pJr1l1Gopp0pv378qDbS3MbnTy8Mh2f98Ef2RLLF/Jibcv1PIKpbZtGGzuao9pjFp6Ot1z71StvhFXNpriws9tEfS79+qQcJVJc65zrCSberC7DjW4k2LQ1GcsYKta6bZpN0RUftcIdXYrn3qicvFQSz1LCZDPsM/vVFURetKCCvVSO3q54wF+Sni2ZSU+UbLKYW28xVfAnNcflc6LrT7a2Vsgusa9YYDDWIJQPWi4kKRHVXPweQvJBwC9O5e7OsGtAWYpV9bBfdW73u12KGpqB3FhwV/Jjny17kyTP5NGqCvfVwuhny4g8iM7oDtqgL2tkiOYOnMclZBSX7Lc5MGXyH4zxtOp2Ki5L+qp/hvFigTY66qfG18aumOL/ADohamJM95xvvRTVUo+03bijDSq6q376MVdK10jekQvNKqk3bsTFcO1e2s4vwFfQ0ob6REntea6wqAftNuf6aV8/7i3xMg0Lk763pYLolxtdwZNdQe5dw1/F8Fc/aKVhC/fhbunyq822lB8O0xHgb++5b79NyOfHYpqAgbcykBxjfYhZetK4hfhjK+dQIk4v3zPn3ZUIyp4Q0gIo8rrrHvPSC3bU2n0y9NCuT6S+mhQMq2naEX/J5Sfnm/3qKbIBQtYaiIeT3V7ELK3SU/Oh+9RFE4zZjCq5GZXaD7NGJ5tcoOaJ6aMHuqwwKMlKojWo0rWuyG3rh7ZPc7iSaH71OCKC/mWU1n+mbfs1luyxePktonbWvcW5YWw1hjDicg7fagOQPkvPe/H/ALwT1VutiU+8c0cz5Z+dlkttzdDAPfsXUNuM/Uapqpraf1uU2S56mZUrs4cdJDj8xZHlmXkgO8l9mvV2ubHHc8FjtzYJk2qY5m2yRFslpd8HWJERHnQ6etzlkiF1btCbt9UqSuyD6yqdRMPX7ahjB9qw2+RcrhPfNwWmxz0jq51LmEUTxl3JV1WPZ9hPZWIP3jwTGOKw5mU5duhH3/lzT2PTXj0sVTtSqLW5rfMmptmU7QdVQEPZniy4RWJULDl2kRnh1tPNwXSAx8pC070pY3sgxofRwtei9Fvd+7V2XbF11vNwcl3Ce+6+fSXXpRE6hQU3IidibqTN4mmtKmmW99KtaNn6Pu3pP6SEP/UM1+gxVOmxbHBf+Er7/wC2u/dpQzsQx28SIOEb3n/5e59lW2ON54J+GP8A0q0U7tBuApyZz/0q0/8AhTD/AHNVf9/q3aR+P4UdsPBhxtKEX7vb2rBD5zk3aQEUBT1rqX1JU6GZh3ZNY5lqwXL92MQT2lYnXhAUG2m16TUdF37+YjXJVTciJnUGuOKZEzPjXjc1eUWdR2RK41cyWrsGxYadwMjgeoC3fmb+AXTVVFT8+ScBlZnmq71p2gT9Dg1EUfyXk08WoXJbwAmeXjVq45muFlRmpwW5q4bVd/crA+Lrua6UYtBxmv7SSaNinsI4vqrIVyeR6Qakq7yq9dsWIgsGHYODopfyoXfDLrkXM9lkDPyEz1eeR1nt09RKteQ7fqmyzuw+/evatPsWk3EVyin+lyej4tCL8O38ah0xXmTT1rXscdLwLmhcrqrGO6T7rTjRNx9JaFA+ktCg5VpL4y/yF9PPCi66j/gbvxxr1ogHXrDUuXJ38y0SjzYFCdV2G7SPXqoxsdS0S3ylpXHTUQ1ehbdyrv6KtPYjhZMU49sdteH3hyUCvL2NDyjX2BWrO2kYjK/Yjuc1SyF+QZCnYOfJT1DlTfsEipZbLizFJppWFb/A4y/npK6P9nGUktNouGLL6NvsUFy7XJ3U4MVvki2H5Rw+iAf/ALk16hsjBTsMrzYNH5PhZYeuxVFRYe/eaao0ceLKVOcSLFEt7h9a9iJ4y91WFYNnk/EFrGdfnjwdg99PhXBznXMextvyV7dwd5VJIOHMN4Cdbm3d2LjDFLQ+9cjVbrevY2H45U7V3dy89NF9xJcMQTXJVykuSXz6Rmufye5O6iuOp2mMMfQj8T76+46oLNVxUx6HSd4BKp2JIFhs7lgwDbxsFlPc8gLrkS/Ofc6R+jcCdlV7LfM1Xxu+nd5oi1UsWzwbPbfdrFzxxLbztMh8NKXsBP3qLRMpdmRdHLzPqhzZpKqW5zKhZ8Z2LRJg4XirXp7Yl8Jc8AwfYUioWTQux3HTRO8taZrT5bNpjkpRR7B1h3+TEe+/VZm2RKbMYUbfRVELbkBRh1t3T0VpteF1F3CVXnZbxa7lpGVhW2Dq6Whh5P36m0Cw4UlIKvYcjIvcLv21FU17mfMw+Hqg0m1Y6R1ntWUDZey6KilJ1Zdz6K1q69WfDUUC8HwzENe8Xvv1VeJL+xaNawrFZYmXjvR8/wD5FVKpiYzDEG2+tlfo9qMqnWa1V1ZcM3G8vqEKO47p3kqDyQHtUuYU84skp6fxZbMCxj9x5DNxvIfzpks2Ypfmy/GPdhJyA6Sa1yJITivHtwu4KxPur0uMhZjFY96YH5CIgfo1A5k1yUWZruTmROZKzFdtoxtMTfXx5dS2dPQ47PejrtdXblLcfkGpGZZlvptIF6svarzr6WdcLWFlndK4vctAxrWCwQd5PI8npemhHLS8Fe/Ch1Cqda0GB0vhvQvlVUdrdSpAXSWhQLpLQoSrCVsLnGdTzhoCPeleNfgzvxhrpvTkWrn6lojF8gULl2G/0U429vU6CUgDk9XKp/w3CduFyjxo4KbrrogAp1kq7qK0bMcoCp1DrMJWhl/6s7H8PW4S0Sb3Keub39kHvLefsur66cNnb52PZ5fL2OYTcR3BIMcuYvBGEE3PUpm2PyVqObZLgjeInbPCLVGs0Vm0x8uviwQDX1nxi+upHjJpLANiwu3yRsNsajvCP9JP35/9M8vkV6VRx7+SKHgOkft3ZBYaq6ML3cTkkXhByHOUWoip5t9relEANApke4RTrpsssfjnEUukVWzh6F7i2y6X8g/7MhG+1qH8dpyb/TVPmrU11WKSPLVYOV15xE3iok2lnsBmM4259zDoxRXMGy88v2VTm06/nNuRndZPhc5NwRxLc0nUK9iebz1G7ze7hh1/wdhwglvDxhPeOCL2d69tKNn2z+7Y8vMeFbI7kqRIPq3+kiX9tZStryHGNmbuJPD6La0OzGUf/oe7Lh1qEq3KkOKfLTuTciUrbiTk6JP+2VfRDB/BIwnAtMcMQnJnXFRzdNlxAbBfJTcufpqVN8FnAOXJiS/pk+7WMNfRMd0nuPYtBvap/wAkfivmcHuo2nJfkD/erXDl4usf+dyR/vSr6ZOcFrARJksSX9Mn3aoXb5wZbfhSwPX/AAq46UVhUSRHfyI20XmJCTnTqqeOvppju4nm/WoS+SM3mjyWOnr9cD3OTHy9LpU2uG7JXNSI17VpwegKj5B51TLBuA5eIJjMaLHN1xwkQRQc642KeofhLlekqYKVmOyrz3Pec3qJUU5b3Q6QLX0lwFwQsPN2VlzGIyHbg4KKTbLiALSdi7lzX9VH424MGzex4Zu9zdhz08DiOvivhSdIR3eL25UNe+jx7trrn6JNrJ8G8MdgvmK42Ta8nnoohDPnUfk083toGpjyNJpDUWmmpoAJ1EcPQC9Jcs8qHyx4H4UbifjZiRDm5EROjQj/AA4fGoLu1IXlV1Hy48OT43lVUOqscEhLpLQoF0loUJU6Us/g7nxhoDl6K9Z/BnfjJXKc9EovkCicljfK3HyVHorVvbBYDZ44iXGQOuLZmnbk7/cgpinrPQnrqn211N+gqv3ZPDW37OsUXfonOfZtrReYPvzv+1tPlUf2a3FMhFe7DElmBoKYn2m2967rx0KG67dLgS9FW2UVw/n05fKr2fdX75eJlwmrrkzJBvu/HMlVf1074QY9xMB4svhDpfubrVnil16M+Oe/RBtPl01WKEcqSOQ6tRV6jsdl3vmPv39liNoShrbclYeBbSsp8BVOartxFbWLfguLbnVEFuL3Gu5/k2+b61z9VQ6zHZ9ntlZvGLXVaF0dUSG2vv8AK9A9QeevqzqA7T9rMy9YUul4fBuIRteAQWGuZkT5kTtLTrXOhu0JZaufes/ps49Y5dqyMdHLNLi4uyHbqe5ZpxTdgvmKbhMZTKO5IXiR8ltNwfUiVtvgo3XBuEcHyJ96vECFd5jnFkjpcsGR+1f1VgdoSccFRXNVqfYUw7fb++3Fs8WRKeMshBoFJV+asiAKsPbITnyXptYwQxsLCBh593Utz7YeEtEwisKNgWVEuDro6nn0TWI+ZvqrGuGDjN1dIDEL/DpSTCPBNxNd1bdxVJZs8ct6i+ut7T8Qf25VoTBnBwwPhhGzehuXuSPjylyDPuBP3lqIu2dSMwkB/Zc9+iFhtVUuuHEdpaO7XwTbsN2s4y2jX9xq8MshamWCccUY+nfnkiavTUh4TN1btGyi8Caohzibjgnys1/VU6uWJcM4Dt2dwlwLPGbHktCoh8wJWNNu+1tza/e4Viwu06dsZdyZFBzN51d2en9lUKaH4ysE0ceBg+ytSvFNSmF8mN57bD/nis+2DDUm/wB4aYhsm646eQiI5qtfQ/YjsVibP7a1MubQOXtwc9+/iO70/qpp2D7D42zyE3dL42D2InRzy6Qxh7Pj/qp020bcoGze3uQLYYSb+6PIbHlCx5xd/dVmrqn1TvhaTjqffDz82xxMZaoquGg98eXLX6Wsl8ie7HuSwaOywZV55BX4IOZM+9VXmqpOFNiL3D2SXYUPS5OMI6d6c6/7Upp4MT0692G/YovThPy7lNRtHTLlEgJmv1klV5w3sRIFrsFkA+nrkGn1D+qhsFIIa8RjPD9hfzRA1D6ilu4Wvw6r28s1gC6ucZINfOpDIcE9GlsG8hy5PX30onfCFSdkmRebWUJm0hcsQXJcqbM4mQjmj8QswJOha93WnNR4m05Kb4htWh5stWe/Kk7gprXRzF0a7ikJSW93jc9VL52Vq3FID6S+mhQPpL6aFCVOlTP4O6vnJXiFq3H89dspnDe+ONFVfYbMCiKVsjqXi+tS5NT/AALimTh96RbZetbbM0jIaLlcWXiuD5yfWmoarzVloy8lKnGzGyt4lxrZbbNeBqNJlgMh5w9KA1nmZqvYgIq0XopMEosqFU0OiddaGxLbXY9nwlhmGCm41E8MeQBz1yJK60/0+KSipWI7Rssa0vgxd8UJzRV5bEJfz3ln+bTcnX2U37Vdr8MLzdUwKa8fJdNHbtp0nxfRFtgfxYaMk19Mu5Kz5MunEKqmXGur4q+L6a3z9oCnpmxuyHFZCHZrql+KRWDfMdSrvPevGKJrsyU8WfKLludw9Qp9SVBr/iqZiBwBkOaGG/gWAXkB9q99Rp+Y7JcI3DUzLrWjmmyBxEPpVmava8lYN0zJg4LRQ0EVP0rZqztkGAJW0DFdvtEREFX3ciNeYB5yJfQOa19J8G4Ms2A7UEDDcduIw0Hv0s8kce09IzPqTu5qzDwMcNiK3y/mCL4OwMZtcvHcXf8AoCta4l2ti92iZbZ3HjGlhodJk9B6ezVlQ+qfhAjGnH39EBlLppnO5ae/qqvxdwkcFYR4xiAT19mhuyZ5DWr4y1QeL+Fli698a1ZyCzRS3aIycv1nz1ov/ho2ePrmVsmqvnTP/qjh4Mmzkf8AuqT/AJpfsqVk+z4dGknrF/wo93UP18Db8r5/3bFN4vb6u3CY/INwuUpmS1rzgl4FixrNJxXNji9cDe4iI4Y58WOWZqnfykTOppiTg7bObTYrhcFtsgPBGDdFfCl5xTd1dtZwsPCZvmz22BZLIzD8CjmahrbRV3r21dfJ8bTu3Jtwzy9VAcUMzWbvTPK3ZyW+SFXo7rSOOsqY6UcbIUMO9NQ89VhceDtge8zHZV0ZuUqQ6WZuOTsyJfmrM/8AxrYr5hagfQJUw2dcJrGOPMTW6zspDZWU8LetI6Koiq9LmoVFR1MVzFIB2n0VyaojIxSxHLqHqtS4WwtbsF2KPZrC241BZIzBHD1rmpZrvqu9s+yfCWLIFzxFirw1XYUElDi5KACICbkyy8qrdkSG2Wnnj+DZAzL4qDXz92r8KDEl4t93w6XgvgclTZJwG0A1HPdzVWpGyyPModa2varVQRhELRc8Oq3FZbv4NtTXkZ6GotNMJrmtOc91HXFIz0qu/o503qiCikCqqp3ZUyoON5IWjpwWsAKKMtKaPao2HpKSwmW/VyqIRBJF1LkvVR9vHVMYTzqqDUKydEgLpL6aFeudMvTQocdVYSuF74zJb69GtPVRKd/NXsN5I8ltxU1CK707qNls+DvqCcoOkBdqdVWYzeO/JRnVcIefJP1d1S/Br5QFuUwV0m1FJsC1dEnOTn7GuoZSgJToskwhqLalmo57lWr9JUbmQSHgoJY94zCnm4XjNSSOWoutz7KY1cUlr3ilIVPdkhZc9FlXaiplqHYnrkcbIxYLtC076PZd0khLScCTUmpNSdlBD37qga7CnluJaF2VcJK87MbI7abLHhlHde481eaQyUssuurNZ4beJE6UK3/Qp9lYyF1U8ajgJ8m1MUXQPSKiLKoH52A9iDybMY52IEjtK2q3w379lyocH6NPso1OHBe8vwGEXyE+ysS8cXateo8opmpLUnxMP+sdyg/a/wD6O7ytb404YV8xTh+baHGIzDMsNBG0GRVmO5XdZbpEi5ItMZSlXqrlHs92nStMfVXGFjQB1KzBs9kJxZk9ZunBuQRmIjnqWrK2V7SXdnGI2LwxHafkRkJAF7eiLzZ1UyKadFFz9FdI46JZ5L7NNiqCzMqWakZOzCVs6/8ADQvFyssuF4DCa8JZJlTAVRU1D1Vkm73UZ0k3FVclWmd2WZ0mU8+lSkqm2wsaAFHTbPbA7ESSes3XrpqRqpUWhLrTTz12WnJM88+6ud2S6M8++h56RRYLwkDMtKrS20AnhBub8mWjcX2abqd3R9zrLyuS/NXcnktp9tcac8fJddpbmmEl1Kq0K8oUKU6956dIj4SWUiyV0GnwLi9XcvdTVQzqWOQxm64RdK3Y5suEDiKJjXKc9HN3AkbRqSCPNpzZ9JPQteq2wfwL2Xc4mX11ZBYflKZmNUnXnKh8ajljueKQl8U658Hc7vnGnWPJcui9W+hRnEn3e0lDijHyfaSlmlkgJAgLqHUS9Hur1HyFNIqooXVXnFF3fPXPFL2p7VOxFcsF1rXtr1DzTL2a44svN9qhxZeb7VLEUsK65XkrXSFo5RdLxa54s/KT2q94oyTfl7VODkkNZdq0EdIV51rzii7vnocSfd7SUsRSsF6vK5QJya80l4ybq94g16Ip7SV0MVzPxPbGuWPJLJEqWpaGVKxg5b3n2Wk7zzWjwk2+CmpptZr/AIquJkA/J66VrfMbLl+SUQLayy14fduREToB4zy9id3fTXcZ7lylE+8mnPcIJzAnUiVzOnvz3uMluKZcydiJ3Ukz31BNMHDAzTzT2ttmdVzQoUKpKRChQoUkkKFChSSQrqhQpJLmhQoUkkKFChSSQoUKFJJChQoUkkKFChSSQoUKFJJChQoUkkKFChSSQoUKFJJf/9k=" alt="Pocket24.Pro" style="width:72px;height:72px;border-radius:18px;object-fit:cover;display:block;"></div>
+                <div class="welcome-logo" data-i18n="appName">Pocket24.Pro</div>
                 <div class="welcome-slogan" data-i18n="welcomeSlogan">تداول العقود الآجلة والفوركس باحترافية</div>
+                <div class="welcome-trust-row">
+                    <span class="welcome-trust-chip"><i class="fas fa-shield-halved"></i> حماية بنكية</span>
+                    <span class="welcome-trust-chip"><i class="fas fa-bolt"></i> تنفيذ فوري</span>
+                    <span class="welcome-trust-chip"><i class="fas fa-globe"></i> +150 دولة</span>
+                </div>
             </div>
             <div class="welcome-actions">
-                <button class="btn-welcome btn-welcome-primary" id="welcomeLoginBtn"><i class="fas fa-sign-in-alt" style="margin-left: 10px;"></i> <span data-i18n="login">تسجيل الدخول</span></button>
-                <button class="btn-welcome" id="welcomeSignupBtn"><i class="fas fa-user-plus" style="margin-left: 10px;"></i> <span data-i18n="signup">إنشاء حساب جديد</span></button>
+                <button class="btn-welcome btn-welcome-primary" id="welcomeLoginBtn"><i class="fas fa-sign-in-alt"></i> <span data-i18n="login">تسجيل الدخول</span></button>
+                <button class="btn-welcome" id="welcomeSignupBtn"><i class="fas fa-user-plus"></i> <span data-i18n="signup">إنشاء حساب جديد</span></button>
             </div>
-            <div class="lang-selector-welcome">
-                <button class="lang-btn active" data-lang="ar">العربية</button>
-                <button class="lang-btn" data-lang="en">English</button>
-                <button class="lang-btn" data-lang="fr">Français</button>
-            </div>
+            <!-- lang selector removed: Arabic only -->
             <div class="welcome-footer">
-                <span data-i18n="trustedPlatform">Pocket24 · منصة تداول موثوقة</span>
+                <span data-i18n="trustedPlatform">Pocket24.Pro · منصة تداول موثوقة</span>
                 <div style="margin-top: 12px; display: flex; gap: 16px; justify-content: center;">
                     <span class="link" id="supportLinkWelcome">الدعم</span>
                     <span class="link" id="legalLinkWelcome">القانونية</span>
@@ -5894,11 +6181,33 @@
         <div class="modal" id="loginModal">
             <div class="modal-sheet">
                 <div class="modal-sheet-handle"></div>
-                <div class="modal-header"><h2 data-i18n="welcomeBack">مرحباً بعودتك</h2><button class="close-modal" data-close="loginModal">&times;</button></div>
-                <div class="input-group"><label data-i18n="emailOrUsername">البريد الإلكتروني أو اسم المستخدم</label><input class="input-field" type="text" id="loginIdentifier" placeholder="example@mail.com"></div>
-                <div class="input-group"><label data-i18n="password">كلمة المرور</label><input class="input-field" type="password" id="loginPassword" placeholder="********"></div>
-                <div style="text-align:left;margin:6px 0 14px;"><span class="link" id="forgotPasswordLink" data-i18n="forgotPassword">نسيت كلمة المرور؟</span></div>
-                <button class="btn-primary" style="width:100%;" id="loginSubmitBtn" data-i18n="loginBtn">تسجيل الدخول</button>
+                <div class="modal-header">
+                    <div>
+                        <span class="auth-badge"><i class="fas fa-sparkles"></i> Pocket24</span>
+                        <h2 data-i18n="welcomeBack">مرحباً بعودتك</h2>
+                    </div>
+                    <button class="close-modal" data-close="loginModal">&times;</button>
+                </div>
+                <p class="modal-subtitle">سجّل دخولك للمتابعة إلى حسابك ومواصلة التداول بأمان.</p>
+
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                    <input class="input-field" type="text" id="loginIdentifier" placeholder=" ">
+                    <label for="loginIdentifier" data-i18n="emailOrUsername">البريد الإلكتروني أو اسم المستخدم</label>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                    <input class="input-field" type="password" id="loginPassword" placeholder=" ">
+                    <label for="loginPassword" data-i18n="password">كلمة المرور</label>
+                    <button type="button" class="input-toggle" onclick="(function(b){var i=b.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';b.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';})(this)"><i class="fas fa-eye"></i></button>
+                </div>
+
+                <div class="auth-forgot-row">
+                    <span class="link" id="forgotPasswordLink" data-i18n="forgotPassword">نسيت كلمة المرور؟</span>
+                </div>
+
+                <button class="btn-primary" style="width:100%;" id="loginSubmitBtn"><span data-i18n="loginBtn">تسجيل الدخول</span></button>
+
                 <div class="modal-footer"><span data-i18n="noAccountMsg">ليس لديك حساب؟</span> <span class="link" id="switchToSignupLink" data-i18n="createAccountHere">أنشئ حساباً هنا</span></div>
             </div>
         </div>
@@ -5906,24 +6215,70 @@
         <div class="modal" id="signupModal">
             <div class="modal-sheet">
                 <div class="modal-sheet-handle"></div>
-                <div class="modal-header"><h2 data-i18n="createAccount">إنشاء حساب</h2><button class="close-modal" data-close="signupModal">&times;</button></div>
-                <div class="double-input">
-                    <div class="input-group"><label data-i18n="firstName">الاسم الأول</label><input class="input-field" type="text" id="firstName"></div>
-                    <div class="input-group"><label data-i18n="lastName">اسم العائلة</label><input class="input-field" type="text" id="lastName"></div>
+                <div class="modal-header">
+                    <div>
+                        <span class="auth-badge"><i class="fas fa-rocket"></i> ابدأ رحلتك</span>
+                        <h2 data-i18n="createAccount">إنشاء حساب</h2>
+                    </div>
+                    <button class="close-modal" data-close="signupModal">&times;</button>
                 </div>
-                <div class="input-group"><label data-i18n="username">اسم المستخدم</label><input class="input-field" type="text" id="username"></div>
-                <div class="input-group"><label data-i18n="email">البريد الإلكتروني</label><input class="input-field" type="email" id="signupEmail"></div>
-                <div class="input-group"><label data-i18n="password">كلمة المرور</label><input class="input-field" type="password" id="signupPassword"></div>
-                <div class="input-group"><label data-i18n="inviteCode">رمز الدعوة</label><input class="input-field" type="text" id="inviteCode" data-i18n-placeholder="optional" placeholder="اختياري"></div>
-                <div style="display:flex;align-items:flex-start;gap:10px;margin:12px 0;padding:12px;background:var(--input-bg);border-radius:12px;">
-                    <input type="checkbox" id="termsAgreementCheck" style="width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:#6366f1;cursor:pointer;">
-                    <label for="termsAgreementCheck" style="font-size:13px;line-height:1.6;cursor:pointer;color:var(--text-primary);">
+                <p class="modal-subtitle">أنشئ حسابك خلال دقيقة وابدأ التداول بمزايا احترافية.</p>
+
+                <div class="double-input">
+                    <div class="input-group no-icon">
+                        <input class="input-field" type="text" id="firstName" placeholder=" ">
+                        <label for="firstName" data-i18n="firstName">الاسم الأول</label>
+                    </div>
+                    <div class="input-group no-icon">
+                        <input class="input-field" type="text" id="lastName" placeholder=" ">
+                        <label for="lastName" data-i18n="lastName">اسم العائلة</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-at"></i></span>
+                    <input class="input-field" type="text" id="username" placeholder=" ">
+                    <label for="username" data-i18n="username">اسم المستخدم</label>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                    <input class="input-field" type="email" id="signupEmail" placeholder=" ">
+                    <label for="signupEmail" data-i18n="email">البريد الإلكتروني</label>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                    <input class="input-field" type="password" id="signupPassword" placeholder=" " oninput="updatePwStrength(this.value)">
+                    <label for="signupPassword" data-i18n="password">كلمة المرور</label>
+                    <button type="button" class="input-toggle" onclick="(function(b){var i=b.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';b.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';})(this)"><i class="fas fa-eye"></i></button>
+                </div>
+                <div class="pw-strength-wrap" id="pwStrengthWrap" style="display:none;">
+                    <div class="pw-strength-bar">
+                        <span id="pwS1"></span><span id="pwS2"></span><span id="pwS3"></span><span id="pwS4"></span>
+                    </div>
+                    <div class="pw-strength-label" id="pwStrengthLabel"></div>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-shield-halved"></i></span>
+                    <input class="input-field" type="password" id="confirmSignupPassword" placeholder=" ">
+                    <label for="confirmSignupPassword" data-i18n="confirmPassword">تأكيد كلمة المرور</label>
+                    <button type="button" class="input-toggle" onclick="(function(b){var i=b.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';b.querySelector('i').className=i.type==='password'?'fas fa-eye':'fas fa-eye-slash';})(this)"><i class="fas fa-eye"></i></button>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-gift"></i></span>
+                    <input class="input-field" type="text" id="inviteCode" placeholder=" ">
+                    <label for="inviteCode" data-i18n="inviteCode">رمز الدعوة (اختياري)</label>
+                </div>
+
+                <div class="terms-card">
+                    <input type="checkbox" id="termsAgreementCheck">
+                    <label for="termsAgreementCheck">
                         <span data-i18n="iAgree">أوافق على</span>
-                        <span id="openTermsFromSignup" style="color:#6366f1;font-weight:700;cursor:pointer;text-decoration:underline;" data-i18n="termsAndConditions">الشروط والأحكام</span>
-                        <span data-i18n="andPrivacyPolicy">وسياسة الخصوصية الخاصة بمنصة Pocket24</span>
+                        <span id="openTermsFromSignup" class="link-inline" data-i18n="termsAndConditions">الشروط والأحكام</span>
+                        <span data-i18n="andPrivacyPolicy">وسياسة الخصوصية الخاصة بمنصة Pocket24.Pro</span>
                     </label>
                 </div>
-                <button class="btn-primary" style="width:100%;" id="signupSubmitBtn" data-i18n="createAccountBtn">إنشاء حساب</button>
+
+                <button class="btn-primary" style="width:100%;" id="signupSubmitBtn"><span data-i18n="createAccountBtn">إنشاء حساب</span></button>
+
                 <div class="modal-footer"><span data-i18n="haveAccount">لديك حساب بالفعل؟</span> <span class="link" id="switchToLoginLink" data-i18n="loginLink">تسجيل الدخول</span></div>
             </div>
         </div>
@@ -6399,8 +6754,8 @@
             const appPath = appUrl.pathname || '/';
             const appScope = appPath.endsWith('/') ? appPath : appPath.substring(0, appPath.lastIndexOf('/') + 1);
             const manifestData = {
-                name: "Pocket24 - منصة تداول العقود الآجلة والفوركس",
-                short_name: "Pocket24",
+                name: "Pocket24.Pro - منصة تداول العقود الآجلة والفوركس",
+                short_name: "Pocket24.Pro",
                  id: appPath,
                 description: "تداول العقود الآجلة والفوركس باحترافية",
                  start_url: appPath,
@@ -6459,11 +6814,11 @@
             // ==================== TRANSLATIONS ====================
             const translations = {
                 ar: {
-                    appName: 'Pocket24',
+                    appName: 'Pocket24.Pro',
                     welcomeSlogan: 'تداول العقود الآجلة والفوركس باحترافية',
                     login: 'تسجيل الدخول',
                     signup: 'إنشاء حساب جديد',
-                    trustedPlatform: 'Pocket24 · منصة تداول موثوقة',
+                    trustedPlatform: 'Pocket24.Pro · منصة تداول موثوقة',
                     connected: 'متصل',
                     disconnected: 'غير متصل',
                     totalWallet: 'إجمالي المحفظة',
@@ -6499,7 +6854,7 @@
                     optional: 'اختياري',
                     iAgree: 'أوافق على',
                     termsAndConditions: 'الشروط والأحكام',
-                    andPrivacyPolicy: 'وسياسة الخصوصية الخاصة بمنصة Pocket24',
+                    andPrivacyPolicy: 'وسياسة الخصوصية الخاصة بمنصة Pocket24.Pro',
                     createAccountBtn: 'إنشاء حساب',
                     haveAccount: 'لديك حساب بالفعل؟',
                     loginLink: 'تسجيل الدخول',
@@ -6592,11 +6947,11 @@
                     vipTitle: 'عروض VIP الحصرية',
                 },
                 en: {
-                    appName: 'Pocket24',
+                    appName: 'Pocket24.Pro',
                     welcomeSlogan: 'Trade futures & forex professionally',
                     login: 'Log in',
                     signup: 'Sign up',
-                    trustedPlatform: 'Pocket24 · Trusted trading platform',
+                    trustedPlatform: 'Pocket24.Pro · Trusted trading platform',
                     connected: 'Connected',
                     disconnected: 'Disconnected',
                     totalWallet: 'Total Wallet',
@@ -6632,7 +6987,7 @@
                     optional: 'Optional',
                     iAgree: 'I agree to the',
                     termsAndConditions: 'Terms & Conditions',
-                    andPrivacyPolicy: 'and Privacy Policy of Pocket24',
+                    andPrivacyPolicy: 'and Privacy Policy of Pocket24.Pro',
                     createAccountBtn: 'Create Account',
                     haveAccount: 'Already have an account?',
                     loginLink: 'Log in',
@@ -6725,11 +7080,11 @@
                     vipTitle: 'Exclusive VIP Offers',
                 },
                 fr: {
-                    appName: 'Pocket24',
+                    appName: 'Pocket24.Pro',
                     welcomeSlogan: 'Tradez les futures et le forex',
                     login: 'Connexion',
                     signup: "S'inscrire",
-                    trustedPlatform: 'Pocket24 · Plateforme de confiance',
+                    trustedPlatform: 'Pocket24.Pro · Plateforme de confiance',
                     connected: 'Connecté',
                     disconnected: 'Déconnecté',
                     totalWallet: 'Portefeuille total',
@@ -6765,7 +7120,7 @@
                     optional: 'Optionnel',
                     iAgree: "J'accepte les",
                     termsAndConditions: 'Termes & Conditions',
-                    andPrivacyPolicy: 'et la Politique de confidentialité de Pocket24',
+                    andPrivacyPolicy: 'et la Politique de confidentialité de Pocket24.Pro',
                     createAccountBtn: 'Créer un compte',
                     haveAccount: 'Vous avez déjà un compte?',
                     loginLink: 'Connexion',
@@ -8064,6 +8419,27 @@
                 setLanguage(this.getAttribute('data-lang'));
             }));
 
+
+            // Password strength meter
+            function updatePwStrength(val) {
+                var wrap = document.getElementById('pwStrengthWrap');
+                var label = document.getElementById('pwStrengthLabel');
+                var bars = [document.getElementById('pwS1'),document.getElementById('pwS2'),document.getElementById('pwS3'),document.getElementById('pwS4')];
+                if (!val) { wrap.style.display='none'; return; }
+                wrap.style.display='flex';
+                var score = 0;
+                if (val.length >= 6) score++;
+                if (val.length >= 10) score++;
+                if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+                if (/[0-9]/.test(val) && /[^A-Za-z0-9]/.test(val)) score++;
+                var colors = ['s-weak','s-fair','s-good','s-strong'];
+                var labels_ar = ['ضعيفة','مقبولة','جيدة','قوية'];
+                var labelColors = ['#ef4444','#f59e0b','#3b82f6','#22c55e'];
+                bars.forEach(function(b,i){ b.className = i < score ? colors[score-1] : ''; });
+                label.textContent = score > 0 ? labels_ar[score-1] : '';
+                label.style.color = score > 0 ? labelColors[score-1] : '#94a3b8';
+            }
+
             // Signup
             document.getElementById('signupSubmitBtn').addEventListener('click', function() {
                 if (!canCreateAccount()) { showToast(t('accountExists'), true); return; }
@@ -8071,12 +8447,14 @@
                     lastName = document.getElementById('lastName').value.trim(),
                     username = document.getElementById('username').value.trim(),
                     email = document.getElementById('signupEmail').value.trim(),
-                    password = document.getElementById('signupPassword').value;
+                    password = document.getElementById('signupPassword').value,
+                    confirmPw = document.getElementById('confirmSignupPassword').value;
                 if (!document.getElementById('termsAgreementCheck').checked) { showToast(t('acceptTermsFirst'), true); return; }
-                if (!firstName || !lastName || !username || !email || !password) { showToast(
+                if (!firstName || !lastName || !username || !email || !password || !confirmPw) { showToast(
                         t('fillAllFields'), true); return; }
                 if (!/^\S+@\S+\.\S+$/.test(email)) { showToast(t('invalidEmail'), true); return; }
                 if (password.length < 6) { showToast(t('passwordTooShort'), true); return; }
+                if (password !== confirmPw) { showToast(t('passwordMismatch'), true); return; }
                 const acc = {
                     firstName,
                     lastName,
@@ -8099,8 +8477,9 @@
                 saveAccount(acc);
                 saveReferralStats({ total: 0, rewards: 0, l1: 0, l2: 0, l3: 0 });
                 showToast(t('accountCreated'), true);
-                ['firstName', 'lastName', 'username', 'signupEmail', 'signupPassword', 'inviteCode'].forEach(id =>
+                ['firstName', 'lastName', 'username', 'signupEmail', 'signupPassword', 'confirmSignupPassword', 'inviteCode'].forEach(id =>
                     document.getElementById(id).value = '');
+                updatePwStrength('');
                 closeModal(document.getElementById('signupModal'));
                 openModal(document.getElementById('loginModal'));
             });
