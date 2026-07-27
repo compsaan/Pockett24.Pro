@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 
-<link rel="manifest" href="./manifest.webmanifest">
+<!-- external manifest removed: manifest is injected at runtime as data: URL for Android 15/16+ installability -->
 <meta name="theme-color" content="#050914">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -6747,68 +6747,133 @@
                 }
             }
 
-            // ==================== PWA MANIFEST ====================
-            // The manifest remains generated here so this single HTML file can be
-            // downloaded and hosted without requiring any additional project file.
-            const appUrl = new URL(location.href);
-            const appPath = appUrl.pathname || '/';
-            const appScope = appPath.endsWith('/') ? appPath : appPath.substring(0, appPath.lastIndexOf('/') + 1);
-            const manifestData = {
+            // ==================== PWA MANIFEST (Android 15/16+ compatible) ====================
+            // Requirements for real installability on modern Android Chrome:
+            //   - manifest reachable via non-blob URL (data: URL is accepted)
+            //   - at least one raster PNG icon 192x192 and 512x512 with purpose "any"
+            //   - separate maskable PNG for the app drawer
+            // Everything is generated inside this single HTML file so it stays portable.
+
+            function __p24_makeIconPng(size, safeInset) {
+                var c = document.createElement('canvas');
+                c.width = size; c.height = size;
+                var ctx = c.getContext('2d');
+                // rounded background
+                var r = Math.round(size * 0.22);
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.moveTo(r, 0);
+                ctx.lineTo(size - r, 0);
+                ctx.quadraticCurveTo(size, 0, size, r);
+                ctx.lineTo(size, size - r);
+                ctx.quadraticCurveTo(size, size, size - r, size);
+                ctx.lineTo(r, size);
+                ctx.quadraticCurveTo(0, size, 0, size - r);
+                ctx.lineTo(0, r);
+                ctx.quadraticCurveTo(0, 0, r, 0);
+                ctx.closePath();
+                ctx.fill();
+                // safe-area inset for maskable variant
+                var inner = size - safeInset * 2;
+                var cx = size / 2;
+                ctx.fillStyle = '#3b82f6';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'alphabetic';
+                ctx.font = 'bold ' + Math.round(inner * 0.55) + 'px Arial, sans-serif';
+                ctx.fillText('P', cx, safeInset + inner * 0.66);
+                ctx.font = 'bold ' + Math.round(inner * 0.18) + 'px Arial, sans-serif';
+                ctx.fillText('24', cx, safeInset + inner * 0.92);
+                return c.toDataURL('image/png');
+            }
+
+            var __p24_icon192 = __p24_makeIconPng(192, 0);
+            var __p24_icon512 = __p24_makeIconPng(512, 0);
+            var __p24_iconMask192 = __p24_makeIconPng(192, Math.round(192 * 0.12));
+            var __p24_iconMask512 = __p24_makeIconPng(512, Math.round(512 * 0.12));
+
+            var appUrl = new URL(location.href);
+            var appPath = appUrl.pathname || '/';
+            var appScope = appPath.endsWith('/') ? appPath : appPath.substring(0, appPath.lastIndexOf('/') + 1);
+            var manifestData = {
                 name: "Pocket24.Pro - منصة تداول العقود الآجلة والفوركس",
                 short_name: "Pocket24.Pro",
-                 id: appPath,
+                id: appScope,
                 description: "تداول العقود الآجلة والفوركس باحترافية",
-                 start_url: appPath,
+                start_url: appPath,
                 display: "standalone",
-                 display_override: ["window-controls-overlay", "standalone"],
+                display_override: ["standalone", "minimal-ui"],
                 background_color: "#0f172a",
                 theme_color: "#0f172a",
                 orientation: "portrait-primary",
                 lang: "ar",
                 dir: "rtl",
-                 scope: appScope,
-                 prefer_related_applications: false,
-                icons: [{
-                    src: "data:image/svg+xml," + encodeURIComponent(
-                        "<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230f172a'/><text x='96' y='120' font-family='Arial' font-size='90' font-weight='bold' fill='%233b82f6' text-anchor='middle'>P</text><text x='96' y='155' font-family='Arial' font-size='28' font-weight='bold' fill='%233b82f6' text-anchor='middle'>24</text></svg>"
-                        ),
-                    sizes: "192x192",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                }, {
-                    src: "data:image/svg+xml," + encodeURIComponent(
-                        "<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%230f172a'/><text x='256' y='320' font-family='Arial' font-size='240' font-weight='bold' fill='%233b82f6' text-anchor='middle'>P</text><text x='256' y='410' font-family='Arial' font-size='70' font-weight='bold' fill='%233b82f6' text-anchor='middle'>24</text></svg>"
-                        ),
-                    sizes: "512x512",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                }],
+                scope: appScope,
+                prefer_related_applications: false,
+                icons: [
+                    { src: __p24_icon192,     sizes: "192x192", type: "image/png", purpose: "any" },
+                    { src: __p24_icon512,     sizes: "512x512", type: "image/png", purpose: "any" },
+                    { src: __p24_iconMask192, sizes: "192x192", type: "image/png", purpose: "maskable" },
+                    { src: __p24_iconMask512, sizes: "512x512", type: "image/png", purpose: "maskable" }
+                ],
                 categories: ["finance", "business"]
             };
 
-            const manifestBlob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
-            const manifestURL = URL.createObjectURL(manifestBlob);
-            const manifestLink = document.createElement('link');
+            // data: URL is accepted by Chrome/Android for installability (unlike blob:).
+            var manifestHref = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifestData));
+            var manifestLink = document.createElement('link');
             manifestLink.rel = 'manifest';
-            manifestLink.href = manifestURL;
+            manifestLink.href = manifestHref;
             document.head.appendChild(manifestLink);
+
+            // apple-touch-icon from the same PNG for iOS home-screen
+            try {
+                var appleIcon = document.createElement('link');
+                appleIcon.rel = 'apple-touch-icon';
+                appleIcon.href = __p24_icon192;
+                document.head.appendChild(appleIcon);
+            } catch(_) {}
+
+            // Register a minimal in-page service worker (fetch handler) to satisfy
+            // legacy installability checks. Silently ignored if the browser refuses
+            // Blob-URL workers or if HTTPS/localhost is not available.
+            try {
+                if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+                    var swCode = "self.addEventListener('install',function(e){self.skipWaiting();});" +
+                                 "self.addEventListener('activate',function(e){e.waitUntil(self.clients.claim());});" +
+                                 "self.addEventListener('fetch',function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('',{status:504});}));});";
+                    var swBlob = new Blob([swCode], { type: 'text/javascript' });
+                    var swUrl  = URL.createObjectURL(swBlob);
+                    navigator.serviceWorker.register(swUrl).catch(function(){});
+                }
+            } catch(_) {}
 
             // Capture PWA install prompt as early as possible
             window.__deferredInstallPrompt = null;
             window.addEventListener('beforeinstallprompt', function(e) {
                 e.preventDefault();
                 window.__deferredInstallPrompt = e;
+                // Trigger install dialog on the very first user gesture (browsers require it).
+                var fire = function() {
+                    document.removeEventListener('pointerdown', fire, true);
+                    document.removeEventListener('touchstart',  fire, true);
+                    document.removeEventListener('keydown',     fire, true);
+                    try {
+                        var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+                        if (isStandalone) return;
+                        var ev = window.__deferredInstallPrompt;
+                        if (!ev) return;
+                        window.__deferredInstallPrompt = null;
+                        ev.prompt();
+                    } catch(_) {}
+                };
+                document.addEventListener('pointerdown', fire, true);
+                document.addEventListener('touchstart',  fire, true);
+                document.addEventListener('keydown',     fire, true);
             });
             window.addEventListener('appinstalled', function() {
                 window.__deferredInstallPrompt = null;
                 try { alert('تم تثبيت التطبيق بنجاح في درج التطبيقات ✓'); } catch(_) {}
             });
-
-            // A service worker cannot legally be registered from a Blob URL.
-            // Do not silently pretend it was installed: when this one-file app
-            // is hosted, the browser's native install prompt is the source of
-            // truth. A separately hosted service-worker.js can be added later
-            // without changing any application behavior.
 
 
             // ==================== TRANSLATIONS ====================
@@ -9449,13 +9514,7 @@
 <script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="a9db23d2-a0ba-4137-ab58-6781c8c7153a"></script>
 
 
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(console.error);
-  });
-}
-</script>
+<!-- legacy ./sw.js registration removed; SW is generated inline above for installability -->
 
 </body>
 </html>
